@@ -13,7 +13,7 @@ from setuptools import setup
 
 if LooseVersion(sys.version) < LooseVersion("3.6"):
     raise RuntimeError(
-        "parallel-wavegan requires Python>=3.6, "
+        "parallel-wavegan-vc requires Python>=3.6, "
         "but your Python is {}".format(sys.version))
 if LooseVersion(pip.__version__) < LooseVersion("19"):
     raise RuntimeError(
@@ -34,6 +34,9 @@ requirements = {
         "h5py>=2.9.0",
         "yq>=2.10.0",
         "gdown",
+        "torchaudio",
+        "torchcrepe",
+        "toml",
     ],
     "setup": [
         "numpy",
@@ -48,11 +51,11 @@ requirements = {
 }
 entry_points = {
     "console_scripts": [
-        "parallel-wavegan-preprocess=parallel_wavegan.bin.preprocess:main",
-        "parallel-wavegan-compute-statistics=parallel_wavegan.bin.compute_statistics:main",
-        "parallel-wavegan-normalize=parallel_wavegan.bin.normalize:main",
-        "parallel-wavegan-train=parallel_wavegan.bin.train:main",
-        "parallel-wavegan-decode=parallel_wavegan.bin.decode:main",
+        "parallel-wavegan-vc-preprocess=parallel_wavegan_vc.bin.preprocess:main",
+        "parallel-wavegan-vc-compute-statistics=parallel_wavegan_vc.bin.compute_statistics:main",
+        "parallel-wavegan-vc-normalize=parallel_wavegan_vc.bin.normalize:main",
+        "parallel-wavegan-vc-train=parallel_wavegan_vc.bin.train:main",
+        "parallel-wavegan-vc-decode=parallel_wavegan_vc.bin.decode:main",
     ]
 }
 
@@ -63,17 +66,17 @@ extras_require = {k: v for k, v in requirements.items()
                   if k not in ["install", "setup"]}
 
 dirname = os.path.dirname(__file__)
-setup(name="parallel_wavegan",
+setup(name="parallel_wavegan_vc",
       version="0.4.8",
-      url="http://github.com/kan-bayashi/ParallelWaveGAN",
-      author="Tomoki Hayashi",
-      author_email="hayashi.tomoki@g.sp.m.is.nagoya-u.ac.jp",
-      description="Parallel WaveGAN implementation",
+      url="https://github.com/ToraRuka/ParallelWaveGAN-VC",
+      author="Jaegeon Jo",
+      author_email="toraruka623@gmail.com",
+      description="Parallel WaveGAN VC implementation",
       long_description=open(os.path.join(dirname, "README.md"),
                             encoding="utf-8").read(),
       long_description_content_type="text/markdown",
       license="MIT License",
-      packages=find_packages(include=["parallel_wavegan*"]),
+      packages=find_packages(include=["parallel_wavegan_vc*"]),
       install_requires=install_requires,
       setup_requires=setup_requires,
       tests_require=tests_require,
